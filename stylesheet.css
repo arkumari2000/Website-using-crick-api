@@ -1,0 +1,13 @@
+.main-box{
+    background-image: url(https://www.mpl.live/blog/wp-content/uploads/2020/02/ipl.jpg);
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main-box table{
+    background: #fff;
+}
+.img-box{
+    text-align: center;
+}

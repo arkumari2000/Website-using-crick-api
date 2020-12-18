@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FRONTEND TASK</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap links -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Customized CSS Link -->
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <div class="container py-3">
+                <div class="form-group">
+                  <input type="text" class="form-control" id='playerid' placeholder="Enter Player ID">
+                  <small class="form-text text-muted">Please enter the player id to get thier information!</small>
+                </div>
+                <button type="button" class="btn btn-primary btn-block mb-3" id="getinfo">Search Player Statistics</button>
+            <div class="main-box p-3">
+                <div class="row">
+                    <div class="col-md-12 img-box">
+                        <img src="https://www.mpl.live/blog/wp-content/uploads/2020/02/ipl.jpg" class="img-thumbnail img-rounded" id="playerimg" width="200">
+                        <h2 id="name" class="text-primary"></h2>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <col width=200><col width=100><col width=100>
+                            <tbody>
+                                <tr>
+                                    <td>Plays for</td>
+                                    <td id="playsfor" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Age</td>
+                                    <td id="age" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Born</td>
+                                    <td id="bod" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Batting Style</td>
+                                    <td id="batting" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>Bowling Style</td>
+                                    <td id="bowling" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td id="profile" colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <tbody>
+                            <col width=200><col width=100><col width=100>
+                            <tr>
+                                <td colspan="3">Major Teams Affiliated With</td>
+                            </tr>
+                            <tr id="majorTeams">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Batting Performance - as in the API</h4>
+                        <table class="table table-striped" id="tableto">
+                            <tbody>
+                            <tr>
+                                <td>Leauge</td>
+                                <td>50</td>
+                                <td>100</td>
+                                <td>St</td>
+                                <td>Ct</td>
+                                <td>6s</td>
+                                <td>4s</td>
+                                <td>Ave</td>
+                                <td>HS</td>
+                                <td>Runs</td>
+                                <td>NO</td>
+                                <td>Inns</td>
+                                <td>Mat</td>
+                            </tr>
+                            <tr>
+                                <td>listA</td>
+                                <td id="batl50"></td>
+                                <td id="batl100"></td>
+                                <td id="batlst"></td>
+                                <td id="batlct"></td>
+                                <td id="batl6"></td>
+                                <td id="batl4"></td>
+                                <td id="batlave"></td>
+                                <td id="batlhs"></td>
+                                <td id="batlrun"></td>
+                                <td id="batlno"></td>
+                                <td id="batlinn"></td>
+                                <td id="batlmat"></td>
+                            </tr>
+                            <tr>
+                                <td>firstClass</td>
+                                <td id="batfc50"></td>
+                                <td id="batfc100"></td>
+                                <td id="batfcst"></td>
+                                <td id="batfcct"></td>
+                                <td id="batfc6"></td>
+                                <td id="batfc4"></td>
+                                <td id="batfcave"></td>
+                                <td id="batfchs"></td>
+                                <td id="batfcrun"></td>
+                                <td id="batfcno"></td>
+                                <td id="batfcinn"></td>
+                                <td id="batfcmat"></td>
+                            </tr>
+                            <tr>
+                                <td>T20Is</td>
+                                <td id="batt50"></td>
+                                <td id="batt100"></td>
+                                <td id="battst"></td>
+                                <td id="battct"></td>
+                                <td id="batt6"></td>
+                                <td id="batt4"></td>
+                                <td id="battave"></td>
+                                <td id="batths"></td>
+                                <td id="battrun"></td>
+                                <td id="battno"></td>
+                                <td id="battinn"></td>
+                                <td id="battmat"></td>
+                            </tr>
+                            <tr>
+                                <td>ODIs</td>
+                                <td id="bato50"></td>
+                                <td id="bato100"></td>
+                                <td id="batost"></td>
+                                <td id="batoct"></td>
+                                <td id="bato6"></td>
+                                <td id="bato4"></td>
+                                <td id="batoave"></td>
+                                <td id="batohs"></td>
+                                <td id="batorun"></td>
+                                <td id="batono"></td>
+                                <td id="batoinn"></td>
+                                <td id="batomat"></td>
+                            </tr>
+                            <tr>
+                                <td>tests</td>
+                                <td id="battest50"></td>
+                                <td id="battest100"></td>
+                                <td id="battestst"></td>
+                                <td id="battestct"></td>
+                                <td id="battest6"></td>
+                                <td id="battest4"></td>
+                                <td id="battestave"></td>
+                                <td id="battesths"></td>
+                                <td id="battestrun"></td>
+                                <td id="battestno"></td>
+                                <td id="battestinn"></td>
+                                <td id="battestmat"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Bowling Performance - as in the API</h4>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>Leauge</td>
+                                    <td>10</td>
+                                    <td>5w</td>
+                                    <td>4w</td>
+                                    <td>Econ</td>
+                                    <td>Ave</td>
+                                    <td>BBM</td>
+                                    <td>BBI</td>
+                                    <td>Wkts</td>
+                                    <td>Runs</td>
+                                    <td>Balls</td>
+                                    <td>Inns</td>
+                                    <td>Mat</td>
+                                </tr>
+                                <tr>
+                                    <td>listA</td>
+                                    <td id="bowll10"></td>
+                                    <td id="bowll5w"></td>
+                                    <td id="bowll4w"></td>
+                                    <td id="bowllecon"></td>
+                                    <td id="bowllave"></td>
+                                    <td id="bowllbbm"></td>
+                                    <td id="bowllbbi"></td>
+                                    <td id="bowllwkts"></td>
+                                    <td id="bowllrun"></td>
+                                    <td id="bowllball"></td>
+                                    <td id="bowllinn"></td>
+                                    <td id="bowllmat"></td>
+                                </tr>
+                                <tr>
+                                    <td>firstClass</td>
+                                    <td id="bowlfc10"></td>
+                                    <td id="bowlfc5w"></td>
+                                    <td id="bowlfc4w"></td>
+                                    <td id="bowlfcecon"></td>
+                                    <td id="bowlfcave"></td>
+                                    <td id="bowlfcbbm"></td>
+                                    <td id="bowlfcbbi"></td>
+                                    <td id="bowlfcwkts"></td>
+                                    <td id="bowlfcrun"></td>
+                                    <td id="bowlfcball"></td>
+                                    <td id="bowlfcinn"></td>
+                                    <td id="bowlfcmat"></td>
+                                </tr>
+                                <tr>
+                                    <td>T20Is</td>
+                                    <td id="bowlt10"></td>
+                                    <td id="bowlt5w"></td>
+                                    <td id="bowlt4w"></td>
+                                    <td id="bowltecon"></td>
+                                    <td id="bowltave"></td>
+                                    <td id="bowltbbm"></td>
+                                    <td id="bowltbbi"></td>
+                                    <td id="bowltwkts"></td>
+                                    <td id="bowltrun"></td>
+                                    <td id="bowltball"></td>
+                                    <td id="bowltinn"></td>
+                                    <td id="bowltmat"></td>
+                                </tr>
+                                <tr>
+                                    <td>ODIs</td>
+                                    <td id="bowlo10"></td>
+                                    <td id="bowlo5w"></td>
+                                    <td id="bowlo4w"></td>
+                                    <td id="bowloecon"></td>
+                                    <td id="bowloave"></td>
+                                    <td id="bowlobbm"></td>
+                                    <td id="bowlobbi"></td>
+                                    <td id="bowlowkts"></td>
+                                    <td id="bowlorun"></td>
+                                    <td id="bowloball"></td>
+                                    <td id="bowloinn"></td>
+                                    <td id="bowlomat"></td>
+                                </tr>
+                                <tr>
+                                    <td>tests</td>
+                                    <td id="bowltest10"></td>
+                                    <td id="bowltest5w"></td>
+                                    <td id="bowltest4w"></td>
+                                    <td id="bowltestecon"></td>
+                                    <td id="bowltestave"></td>
+                                    <td id="bowltestbbm"></td>
+                                    <td id="bowltestbbi"></td>
+                                    <td id="bowltestwkts"></td>
+                                    <td id="bowltestrun"></td>
+                                    <td id="bowltestball"></td>
+                                    <td id="bowltestinn"></td>
+                                    <td id="bowltestmat"></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function(){
+            $('#getinfo').click(function(e){
+                e.preventDefault();
+                var requestid = $('#playerid').val();
+                $.ajax({
+                    url :`https://cricapi.com/api/playerStats?apikey=YNIFodahZRaZM3PkqXzUfTfwb6A2&pid=${requestid}`,
+                    data : {
+                        format : 'json'
+                    },
+                    dataType : 'json',
+                    success : function(data){
+                        $('#name').html(data.fullName);
+                        $('#playerimg').attr("src", data.imageURL);
+                        $('#playsfor').html(data.country);
+                        $('#age').html(data.currentAge);
+                        $('#bod').html(data.born);
+                        $('#batting').html(data.battingStyle);
+                        $('#bowling').html(data.bowlingStyle);
+                        $('#profile').html(data.profile);
+                        var arr = data.majorTeams.split(",");
+                        console.log(arr)
+                        var student = ''; 
+                        $.each(arr, function (i,value) { 
+                            //CONSTRUCTION OF Cells HAVING 
+                            // DATA FROM JSON OBJECT 
+                            student += '<td>' +  
+                                value + '</td>';
+                            }); 
+                            console.log(student);
+                            //INSERTING CElls INTO TABLE  
+                            $('#majorTeams').append(student); 
+                        $('#batl50').html(data.data.batting.listA['50']);
+                        $('#batl100').html(data.data.batting.listA['100']);
+                        $('#batlst').html(data.data.batting.listA.St);
+                        $('#batlct').html(data.data.batting.listA.Ct);
+                        $('#batl6').html(data.data.batting.listA['6s']);
+                        $('#batl4').html(data.data.batting.listA['4s']);
+                        $('#batlave').html(data.data.batting.listA.Ave);
+                        $('#batlhs').html(data.data.batting.listA.HS);
+                        $('#batlrun').html(data.data.batting.listA.Runs);
+                        $('#batlno').html(data.data.batting.listA.NO);
+                        $('#batlinn').html(data.data.batting.listA.Inns);
+                        $('#batlmat').html(data.data.batting.listA.Mat);
+                        //batting first class
+                        $('#batfc50').html(data.data.batting.firstClass['50']);
+                        $('#batfc100').html(data.data.batting.firstClass['100']);
+                        $('#batfcst').html(data.data.batting.firstClass.St);
+                        $('#batfcct').html(data.data.batting.firstClass.Ct);
+                        $('#batfc6').html(data.data.batting.firstClass['6s']);
+                        $('#batfc4').html(data.data.batting.firstClass['4s']);
+                        $('#batfcave').html(data.data.batting.firstClass.Ave);
+                        $('#batfchs').html(data.data.batting.firstClass.HS);
+                        $('#batfcrun').html(data.data.batting.firstClass.Runs);
+                        $('#batfcno').html(data.data.batting.firstClass.NO);
+                        $('#batfcinn').html(data.data.batting.firstClass.Inns);
+                        $('#batfcmat').html(data.data.batting.firstClass.Mat);
+                        //batting T20s
+                        $('#batt50').html(data.data.batting.T20Is['50']);
+                        $('#batt100').html(data.data.batting.T20Is['100']);
+                        $('#battst').html(data.data.batting.T20Is.St);
+                        $('#battct').html(data.data.batting.T20Is.Ct);
+                        $('#batt6').html(data.data.batting.T20Is['6s']);
+                        $('#batt4').html(data.data.batting.T20Is['4s']);
+                        $('#battave').html(data.data.batting.T20Is.Ave);
+                        $('#batths').html(data.data.batting.T20Is.HS);
+                        $('#battrun').html(data.data.batting.T20Is.Runs);
+                        $('#battno').html(data.data.batting.T20Is.NO);
+                        $('#battinn').html(data.data.batting.T20Is.Inns);
+                        $('#battmat').html(data.data.batting.T20Is.Mat);
+                        //batting ODIS
+                        $('#bato50').html(data.data.batting.ODIs['50']);
+                        $('#bato100').html(data.data.batting.ODIs['100']);
+                        $('#batost').html(data.data.batting.ODIs.St);
+                        $('#batoct').html(data.data.batting.ODIs.Ct);
+                        $('#bato6').html(data.data.batting.ODIs['6s']);
+                        $('#bato4').html(data.data.batting.ODIs['4s']);
+                        $('#batoave').html(data.data.batting.ODIs.Ave);
+                        $('#batohs').html(data.data.batting.ODIs.HS);
+                        $('#batorun').html(data.data.batting.ODIs.Runs);
+                        $('#batono').html(data.data.batting.ODIs.NO);
+                        $('#batoinn').html(data.data.batting.ODIs.Inns);
+                        $('#batomat').html(data.data.batting.ODIs.Mat);
+                        //Batting Tests
+                        $('#battest50').html(data.data.batting.tests['50']);
+                        $('#battest100').html(data.data.batting.tests['100']);
+                        $('#battestst').html(data.data.batting.tests.St);
+                        $('#battestct').html(data.data.batting.tests.Ct);
+                        $('#battest6').html(data.data.batting.tests['6s']);
+                        $('#battest4').html(data.data.batting.tests['4s']);
+                        $('#battestave').html(data.data.batting.tests.Ave);
+                        $('#battesths').html(data.data.batting.tests.HS);
+                        $('#battestrun').html(data.data.batting.tests.Runs);
+                        $('#battestno').html(data.data.batting.tests.NO);
+                        $('#battestinn').html(data.data.batting.tests.Inns);
+                        $('#battestmat').html(data.data.batting.tests.Mat);
+                        //Balling listA
+                        $('#bowll10').html(data.data.bowling.listA['10']);
+                        $('#bowll5w').html(data.data.bowling.listA['5w']);
+                        $('#bowll4w').html(data.data.bowling.listA['4w']);
+                        $('#bowllecon').html(data.data.bowling.listA.Econ);
+                        $('#bowllave').html(data.data.bowling.listA.Ave);
+                        $('#bowllbbm').html(data.data.bowling.listA.BBM);
+                        $('#bowllbbi').html(data.data.bowling.listA.BBI);
+                        $('#bowllwkts').html(data.data.bowling.listA.Wkts);
+                        $('#bowllrun').html(data.data.bowling.listA.Runs);
+                        $('#bowllball').html(data.data.bowling.listA.Balls);
+                        $('#bowllinn').html(data.data.bowling.listA.Inns);
+                        $('#bowllmat').html(data.data.bowling.listA.Mat);
+                        //Balling firstClass
+                        $('#bowlfc10').html(data.data.bowling.firstClass['10']);
+                        $('#bowlfc5w').html(data.data.bowling.firstClass['5w']);
+                        $('#bowlfc4w').html(data.data.bowling.firstClass['4w']);
+                        $('#bowlfcecon').html(data.data.bowling.firstClass.Econ);
+                        $('#bowlfcave').html(data.data.bowling.firstClass.Ave);
+                        $('#bowlfcbbm').html(data.data.bowling.firstClass.BBM);
+                        $('#bowlfcbbi').html(data.data.bowling.firstClass.BBI);
+                        $('#bowlfcwkts').html(data.data.bowling.firstClass.Wkts);
+                        $('#bowlfcrun').html(data.data.bowling.firstClass.Runs);
+                        $('#bowlfcball').html(data.data.bowling.firstClass.Balls);
+                        $('#bowlfcinn').html(data.data.bowling.firstClass.Inns);
+                        $('#bowlfcmat').html(data.data.bowling.firstClass.Mat);
+                        //Balling T20Is
+                        $('#bowlt10').html(data.data.bowling.T20Is['10']);
+                        $('#bowlt5w').html(data.data.bowling.T20Is['5w']);
+                        $('#bowlt4w').html(data.data.bowling.T20Is['4w']);
+                        $('#bowltecon').html(data.data.bowling.T20Is.Econ);
+                        $('#bowltave').html(data.data.bowling.T20Is.Ave);
+                        $('#bowltbbm').html(data.data.bowling.T20Is.BBM);
+                        $('#bowltbbi').html(data.data.bowling.T20Is.BBI);
+                        $('#bowltwkts').html(data.data.bowling.T20Is.Wkts);
+                        $('#bowltrun').html(data.data.bowling.T20Is.Runs);
+                        $('#bowltball').html(data.data.bowling.T20Is.Balls);
+                        $('#bowltinn').html(data.data.bowling.T20Is.Inns);
+                        $('#bowltmat').html(data.data.bowling.T20Is.Mat);
+                        //Balling ODIs
+                        $('#bowlo10').html(data.data.bowling.ODIs['10']);
+                        $('#bowlo5w').html(data.data.bowling.ODIs['5w']);
+                        $('#bowlo4w').html(data.data.bowling.ODIs['4w']);
+                        $('#bowloecon').html(data.data.bowling.ODIs.Econ);
+                        $('#bowloave').html(data.data.bowling.ODIs.Ave);
+                        $('#bowlobbm').html(data.data.bowling.ODIs.BBM);
+                        $('#bowlobbi').html(data.data.bowling.ODIs.BBI);
+                        $('#bowlowkts').html(data.data.bowling.ODIs.Wkts);
+                        $('#bowlorun').html(data.data.bowling.ODIs.Runs);
+                        $('#bowloball').html(data.data.bowling.ODIs.Balls);
+                        $('#bowloinn').html(data.data.bowling.ODIs.Inns);
+                        $('#bowlomat').html(data.data.bowling.ODIs.Mat);
+                        //Balling tests
+                        $('#bowltest10').html(data.data.bowling.tests['10']);
+                        $('#bowltest5w').html(data.data.bowling.tests['5w']);
+                        $('#bowltest4w').html(data.data.bowling.tests['4w']);
+                        $('#bowltestecon').html(data.data.bowling.tests.Econ);
+                        $('#bowltestave').html(data.data.bowling.tests.Ave);
+                        $('#bowltestbbm').html(data.data.bowling.tests.BBM);
+                        $('#bowltestbbi').html(data.data.bowling.tests.BBI);
+                        $('#bowltestwkts').html(data.data.bowling.tests.Wkts);
+                        $('#bowltestrun').html(data.data.bowling.tests.Runs);
+                        $('#bowltestball').html(data.data.bowling.tests.Balls);
+                        $('#bowltestinn').html(data.data.bowling.tests.Inns);
+                        $('#bowltestmat').html(data.data.bowling.tests.Mat);
+                    },
+                    type : `GET`
+                });
+            })
+        });
+    </script>
+</html>
